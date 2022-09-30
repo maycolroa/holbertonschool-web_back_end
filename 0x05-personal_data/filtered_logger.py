@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Write a function called filter_datum that returns the log message obfuscated"""
+"""Write a function called filter_datum that returns the log message"""
 from typing import List
 import re
 import logging
@@ -27,11 +27,11 @@ class RedactingFormatter(logging.Formatter):
 
 
 def filter_datum(fields: List[str], redaction: str,
-                message: str, separator: str) -> str:
+                 message: str, separator: str) -> str:
     """filter_datum"""
     for field in fields:
         message = re.sub(r'(?<={}=)[^{}]+'.format(field, separator),
-                        redaction, message)
+                         redaction, message)
     return message
 
 
