@@ -9,4 +9,3 @@ def index_range(page: int, page_size: int) -> Tuple[int, int]:
     lower_limit = page * page_size
     indexes_range = (upper_limit, lower_limit)
     return indexes_range
-    
