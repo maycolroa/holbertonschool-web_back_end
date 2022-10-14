@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
-sum_list = __import__('5-sum_list').sum_list
+safely_get_value = __import__('101-safely_get_value').safely_get_value
+annotations = safely_get_value.__annotations__
 
-floats = [3.14, 1.11, 2.22]
-floats_sum = sum_list(floats)
-print(floats_sum == sum(floats))
-print(sum_list.__annotations__)
-print("sum_list(floats) returns {} which is a {}".format(floats_sum, type(floats_sum)))
+print("Here's what the mappings should look like")
+for k, v in annotations.items():
+    print( ("{}: {}".format(k, v)))
