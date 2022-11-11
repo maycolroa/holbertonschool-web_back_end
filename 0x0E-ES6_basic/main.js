@@ -1,5 +1,3 @@
-import getSumOfHoods from './3-default-parameter.js';
+import concatArrays from './5-spread-operator.js';
 
-console.log(getSumOfHoods(34));
-console.log(getSumOfHoods(34, 3));
-console.log(getSumOfHoods(34, 3, 4));
+console.log(concatArrays(['a', 'b'], ['c', 'd'], 'Hello'));
