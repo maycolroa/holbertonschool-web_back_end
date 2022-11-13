@@ -1,32 +1,22 @@
 #!/usr/bin/env python3
-"""
-Python script
-"""
+"""script that provides some stats about Nginx logs stored in MongoDB:"""
 from pymongo import MongoClient
 
-
-def method_requester(method_dict: dict) -> int:
-    """
-    database
-    """
-    client = MongoClient('mongodb://127.0.0.1:27017')
-    logs = client.logs.nginx
-    return logs.count_documents(method_dict)
-
-
-def printer():
-    """
-    Print MongoDB
-    """
-    print(f"{method_requester({})} logs")
-    print("Methods:")
-    print(f"\tmethod GET: {method_requester({'method': 'GET'})}")
-    print(f"\tmethod POST: {method_requester({'method': 'POST'})}")
-    print(f"\tmethod PUT: {method_requester({'method': 'PUT'})}")
-    print(f"\tmethod PATCH: {method_requester({'method': 'PATCH'})}")
-    print(f"\tmethod DELETE: {method_requester({'method': 'DELETE'})}")
-    print(f"{method_requester({'method': 'GET', 'path': '/status'})} status check")
-
-
 if __name__ == "__main__":
-    printer()
+    client = MongoClient('mongodb://127.0.0.1:27017')
+    nginx_collection = client.logs.nginx
+    total_logs = nginx_collection.find()
+    t_GET = nginx_collection.find({"method": "GET"})
+    t_POST = nginx_collection.find({"method": "POST"})
+    t_PUT = nginx_collection.find({"method": "PUT"})
+    t_PATCH = nginx_collection.find({"method": "PATCH"})
+    t_DELETE = nginx_collection.find({"method": "DELETE"})
+    t_G_Status = nginx_collection.find({"method": "GET", "path": "/status"})
+    print("{} logs".format(len(list(total_logs))))
+    print("Methods:")
+    print("\tmethod GET: {}".format(len(list(t_GET))))
+    print("\tmethod POST: {}".format(len(list(t_POST))))
+    print("\tmethod PUT: {}".format(len(list(t_PUT))))
+    print("\tmethod PATCH: {}".format(len(list(t_PATCH))))
+    print("\tmethod DELETE: {}".format(len(list(t_DELETE))))
+    print("{} status check".format(len(list(t_G_Status))))
