@@ -1,3 +1,4 @@
-import initializeRooms from './1-make_classrooms.js';
+import Currency from "./3-currency.js";
 
-console.log(initializeRooms());
+const dollar = new Currency('$', 'Dollars');
+console.log(dollar.displayFullCurrency());
