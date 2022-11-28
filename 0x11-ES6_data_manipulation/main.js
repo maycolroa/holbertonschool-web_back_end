@@ -1,6 +1,16 @@
-import getListStudents from "./0-get_list_students.js";
-import getStudentsByLocation from "./2-get_students_by_loc.js";
+import { queryAPI, weakMap } from "./100-weak.js";
 
-const students = getListStudents();
+const endpoint = { protocol: 'http', name: 'getUsers' };
+weakMap.get(endpoint);
 
-console.log(getStudentsByLocation(students, 'San Francisco'));
+queryAPI(endpoint);
+console.log(weakMap.get(endpoint));
+
+queryAPI(endpoint);
+console.log(weakMap.get(endpoint));
+
+queryAPI(endpoint);
+queryAPI(endpoint);
+queryAPI(endpoint);
+queryAPI(endpoint);
+
